@@ -1,3 +1,29 @@
+Metadata-Version: 2.4
+Name: ai-agent-backend
+Version: 0.1.0
+Summary: AI Agent Backend Service - A comprehensive backend for AI-powered agents with RAG, tool calling, and workflow management
+Author-email: Developer <developer@example.com>
+Classifier: Programming Language :: Python :: 3
+Classifier: Framework :: FastAPI
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: fastapi>=0.139.0
+Requires-Dist: uvicorn>=0.29.0
+Requires-Dist: python-dotenv>=1.0.0
+Requires-Dist: anyio>=4.14.0
+Requires-Dist: pydantic>=2.8.0
+Requires-Dist: annotated-types>=0.7.0
+Requires-Dist: requests>=2.32.0
+Requires-Dist: langchain>=0.1.0
+Requires-Dist: langchain-openai>=0.1.0
+Requires-Dist: openai>=1.30.0
+Requires-Dist: chromadb>=0.4.0
+Requires-Dist: tenacity>=8.2.0
+Requires-Dist: python-multipart>=0.0.9
+
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │                           main.py (入口)                                    │
 │                                  │                                         │
