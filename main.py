@@ -1,15 +1,12 @@
 from fastapi import FastAPI
-from app.api.router import router
+from app.api.chat import router as chat_router
+from app.core.config import Settings,get_settings
 
-from app.domain.message import MessageRole, Message
+settings = get_settings()
 
-msg = Message(role=MessageRole.USER, content="你好")
+app = FastAPI(title=settings.app_name, version=settings.app_version)
+app.include_router(chat_router)
 
-
-
-app = FastAPI(title="AI Agent Backend", version="0.1.0")
-app.include_router(router)
-
-if __name__ == "__main__":
-    print(msg)
-print(msg.model_dump())
+@app.get("/")
+def root():
+    return {"message": "Hello World", "version": settings.app_version}

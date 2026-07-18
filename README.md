@@ -89,19 +89,22 @@ config.py	配置管理
 openai_client.py	OpenAI API封装
 logger.py	日志记录
 exceptions.py	异常处理
+
 📁 模块职责总结
 模块	职责描述
-api/	REST API 接口定义
-services/	业务逻辑封装
-graph/	Agent 工作流编排
-rag/	检索增强生成
-tools/	外部工具调用
-prompts/	提示词模板管理
-core/	核心基础设施
-domain/	领域模型定义
-repositories/	数据访问层
-schemas/	API 请求/响应结构
-utils/	通用工具函数
+app/
+├── api/           # 对外 REST API 接口层
+├── core/          # 核心基础设施配置
+├── domain/        # 领域模型与业务实体 ← 核心业务层
+├── graph/         # 工作流/状态机管理
+├── models/        # 输出数据模型
+├── prompts/       # 提示词模板管理
+├── rag/           # RAG（检索增强生成）模块
+├── repositories/  # 数据访问层
+├── schemas/       # 请求/响应数据结构
+├── services/      # 业务服务层
+├── tools/         # 工具函数集合
+└── utils/         # 通用工具类
 
 用户请求 → chat.py → chat_service.py → workflow.py → nodes.py
                                                       │
