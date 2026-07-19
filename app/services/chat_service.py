@@ -30,3 +30,21 @@ class ChatService:
         conversation.add_message(Message(role=MessageRole.ASSISTANT,content=assistant_message))
         self.conversation_service.save(conversation)
         return assistant_message
+    
+    def stream_chat(self, request: ChatRequest) -> Iterator[str]:
+        """流式聊天"""
+        conversation = self.conversation_service.get_or_create(request.session_id)
+        conversation.add_message(Message(role=MessageRole.USER,content=request.message))
+        response = self.client.chat.completions.create(
+            model=self.settings.model_name,
+            messages=OpenAIMessageAdapter.convert(conversation.get_messages()),
+            stream=True
+        )
+        full_message = ""
+        for chunk in response:
+            context = chunk.choices[0].delta.content
+            if context:
+                full_message += context
+                yield context
+            conversation.add_message(Message(role=MessageRole.ASSISTANT,content=full_message))
+            self.conversation_service.save(conversation)
