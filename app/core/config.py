@@ -36,7 +36,11 @@ class Settings(BaseSettings):
         default="deepseek-chat",
         description="默认模型名称")
     
-# @lru_cache
+    openweather_api_key: str = Field(
+        validation_alias="OPENWEATHER_API_KEY",
+        description="OpenWeather API 密钥")
+    
+@lru_cache
 def get_settings() -> Settings:
     """获取配置实例（单例）"""
     print(Settings().openai_api_key)
