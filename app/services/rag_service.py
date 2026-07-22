@@ -80,17 +80,17 @@ class RAGService:
             )
             return response.choices[0].message.content or ""
         
-        def query(self,query: str,top_k: int = 4) -> str:
-            """
-            完整的 RAG 查询流程
-            
-            :param query: 用户查询
-            :param top_k: 返回文档数量
-            :return: 包含回答和来源的字典
-            """
-            context = self.retrieve_context(query,top_k)
-            answer = self.generate_with_context(query,context)
-            return {"answer": answer, "context": context, "query": query}
+    def query(self,query: str,top_k: int = 4) -> str:
+        """
+        完整的 RAG 查询流程
+        
+        :param query: 用户查询
+        :param top_k: 返回文档数量
+        :return: 包含回答和来源的字典
+        """
+        context = self.retrieve_context(query,top_k)
+        answer = self.generate_with_context(query,context)
+        return {"answer": answer, "context": context, "query": query}
 
 
 
